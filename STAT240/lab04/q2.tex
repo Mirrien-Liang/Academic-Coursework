@@ -1,0 +1,396 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={q2.R},
+  pdfauthor={mirrien},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{q2.R}
+\author{mirrien}
+\date{2022-02-08}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(RSQLite)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: 程辑包'RSQLite'是用R版本4.1.2 来建造的
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dbcon }\OtherTok{\textless{}{-}} \FunctionTok{dbConnect}\NormalTok{(}\FunctionTok{SQLite}\NormalTok{(),}\AttributeTok{dbname=}\StringTok{\textquotesingle{}lab03.sqlite\textquotesingle{}}\NormalTok{)}
+\FunctionTok{dbListTables}\NormalTok{(dbcon)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "CA"         "Olymp_meds" "POP2006"    "POP2011"    "Pokem"     
+## [6] "Vanpoke"    "WinterO"    "tickets"    "zip"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# Q2a:}
+
+\FunctionTok{library}\NormalTok{(rworldmap)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: 程辑包'rworldmap'是用R版本4.1.2 来建造的
+\end{verbatim}
+
+\begin{verbatim}
+## 载入需要的程辑包：sp
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: 程辑包'sp'是用R版本4.1.2 来建造的
+\end{verbatim}
+
+\begin{verbatim}
+## ### Welcome to rworldmap ###
+\end{verbatim}
+
+\begin{verbatim}
+## For a short introduction type :   vignette('rworldmap')
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Loading required package: sp}
+\DocumentationTok{\#\# }\AlertTok{\#\#\#}\DocumentationTok{ Welcome to rworldmap }\AlertTok{\#\#\#}
+\DocumentationTok{\#\# For a short introduction type : vignette(’rworldmap’)}
+\FunctionTok{library}\NormalTok{(rworldxtra)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: 程辑包'rworldxtra'是用R版本4.1.2 来建造的
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{worldmap }\OtherTok{=} \FunctionTok{getMap}\NormalTok{(}\AttributeTok{resolution =} \StringTok{"high"}\NormalTok{)}
+\NormalTok{NrthAm }\OtherTok{=}\NormalTok{ worldmap[}\FunctionTok{which}\NormalTok{(worldmap}\SpecialCharTok{$}\NormalTok{REGION }\SpecialCharTok{==}\StringTok{"North America"}\NormalTok{),]}
+
+\FunctionTok{plot}\NormalTok{(NrthAm, }\AttributeTok{xlim=}\FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\FloatTok{123.35}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{122.65}\NormalTok{),}
+     \AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{49}\NormalTok{,}\FloatTok{49.35}\NormalTok{), }\AttributeTok{main =} \StringTok{"Pokemon in Vancouver"}\NormalTok{)}
+
+
+
+
+\NormalTok{loc1 }\OtherTok{=} \StringTok{"SELECT latitude,longitude FROM Vanpoke"}
+\NormalTok{location }\OtherTok{=} \FunctionTok{dbGetQuery}\NormalTok{(dbcon, loc1)}
+
+
+\FunctionTok{library}\NormalTok{(MASS)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: 程辑包'MASS'是用R版本4.1.2 来建造的
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{points}\NormalTok{(location}\SpecialCharTok{$}\NormalTok{longitude,location}\SpecialCharTok{$}\NormalTok{latitude,}\AttributeTok{cex=}\FloatTok{0.5}\NormalTok{,}\AttributeTok{col=}\StringTok{"gray35"}\NormalTok{)}
+
+
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# Q2b:}
+
+\NormalTok{f1 }\OtherTok{\textless{}{-}} \FunctionTok{kde2d}\NormalTok{(location}\SpecialCharTok{$}\NormalTok{longitude, location}\SpecialCharTok{$}\NormalTok{latitude,}\AttributeTok{n=}\DecValTok{200}\NormalTok{)}
+
+\FunctionTok{contour}\NormalTok{(f1}\SpecialCharTok{$}\NormalTok{x,f1}\SpecialCharTok{$}\NormalTok{y,f1}\SpecialCharTok{$}\NormalTok{z,}
+        \AttributeTok{drawlabels=}\ConstantTok{FALSE}\NormalTok{,}
+        \AttributeTok{nlevels=}\DecValTok{10}\NormalTok{,}
+        \AttributeTok{col=}\FunctionTok{c}\NormalTok{(}\StringTok{"black"}\NormalTok{,}\StringTok{"darkblue"}\NormalTok{,}\StringTok{"darkgreen"}\NormalTok{,}\StringTok{"darkred"}\NormalTok{,}\StringTok{"red"}\NormalTok{),}
+        \AttributeTok{add=}\ConstantTok{TRUE}\NormalTok{,}
+        \AttributeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{q2_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Reference:}
+
+\CommentTok{\# https://stackoverflow.com/questions/37899785/contour{-}plot{-}density{-}of{-}sites{-}}
+\CommentTok{\# with{-}latitude{-}and{-}longitude{-}locations}
+\CommentTok{\# https://stats.stackexchange.com/questions/31726/}
+\CommentTok{\# scatterplot{-}with{-}contour{-}heat{-}overlay}
+\CommentTok{\# https://www.r{-}bloggers.com/2014/09/5{-}ways{-}to{-}do{-}2d{-}histograms{-}in{-}r/}
+
+
+
+
+
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\# Q2c:}
+
+\CommentTok{\# In three sentences or fewer, answer these questions: Where are the}
+\CommentTok{\# peaks of this two dimensional density plot? Why are the peaks}
+\CommentTok{\# in those locations?}
+
+\CommentTok{\# According to the density plot in the previous question, based on}
+\CommentTok{\# the color of contour lines and a general presentation of points,}
+\CommentTok{\# the peaks appear at (1) Vancouver City Hall, (2) Burnaby City Hall,}
+\CommentTok{\# (3) somewhere around the City of Lougheed Shopping Centre, and}
+\CommentTok{\# (4) somewhere around Lonsdale Quay Market in North Vancouver.}
+
+
+
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+
+\CommentTok{\# Q2d:}
+
+\FunctionTok{library}\NormalTok{(ggmap)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: 程辑包'ggmap'是用R版本4.1.2 来建造的
+\end{verbatim}
+
+\begin{verbatim}
+## 载入需要的程辑包：ggplot2
+\end{verbatim}
+
+\begin{verbatim}
+## Google's Terms of Service: https://cloud.google.com/maps-platform/terms/.
+\end{verbatim}
+
+\begin{verbatim}
+## Please cite ggmap if you use it! See citation("ggmap") for details.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qmplot}\NormalTok{(}\AttributeTok{x=}\NormalTok{longitude, }\AttributeTok{y=}\NormalTok{latitude,}
+       \AttributeTok{data =}\NormalTok{ location,}
+       \AttributeTok{maptype =} \StringTok{"toner{-}lite"}\NormalTok{,}
+       \AttributeTok{color =} \FunctionTok{I}\NormalTok{(}\StringTok{"black"}\NormalTok{),}
+       \AttributeTok{alpha =} \FunctionTok{I}\NormalTok{(.}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_density\_2d}\NormalTok{(}\AttributeTok{color =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{stat\_density\_2d}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ ..level..),}
+                  \AttributeTok{geom =} \StringTok{"polygon"}\NormalTok{,}
+                  \AttributeTok{alpha =}\NormalTok{ .}\DecValTok{4}\NormalTok{,}
+                  \AttributeTok{color =} \ConstantTok{NA}\NormalTok{,}
+                  \AttributeTok{contour =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_gradient2}\NormalTok{(}\StringTok{"Density"}\NormalTok{,}
+                       \AttributeTok{low =} \StringTok{"white"}\NormalTok{,}
+                       \AttributeTok{mid =} \StringTok{"yellow"}\NormalTok{,}
+                       \AttributeTok{high =} \StringTok{"red"}\NormalTok{,}
+                       \AttributeTok{midpoint =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Using zoom = 11...
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/322/699.png
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/323/699.png
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/324/699.png
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/325/699.png
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/326/699.png
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/322/700.png
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/323/700.png
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/324/700.png
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/325/700.png
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/326/700.png
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/322/701.png
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/323/701.png
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/324/701.png
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/325/701.png
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/326/701.png
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/322/702.png
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/323/702.png
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/324/702.png
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/325/702.png
+\end{verbatim}
+
+\begin{verbatim}
+## Source : http://tile.stamen.com/terrain/11/326/702.png
+\end{verbatim}
+
+\includegraphics{q2_files/figure-latex/unnamed-chunk-1-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Reference:}
+\CommentTok{\# https://www.r{-}graph{-}gallery.com/2d{-}density{-}plot{-}with{-}ggplot2.html}
+\CommentTok{\# https://cran.r{-}project.org/web/packages/ggmap/readme/README.html}
+\CommentTok{\# https://rpubs.com/nickbearman/r{-}google{-}map{-}making}
+\CommentTok{\# https://biostats.w.uib.no/creating{-}a{-}2d{-}density{-}plot/}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}
